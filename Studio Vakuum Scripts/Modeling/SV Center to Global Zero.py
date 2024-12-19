@@ -6,7 +6,7 @@ Website: https://www.studio-vakuum.com
 Version: 1.0.0
 Description-US: Position and axis of the children won't be affected, when setting the parent axis to global zero position
 
-Written for Maxon Cinema 4D 2024.2.0
+Written for Maxon Cinema 4D 2024.5.1
 Python version 3.11.4
 """
 

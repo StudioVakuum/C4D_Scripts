@@ -16,12 +16,22 @@ def main():
     doc = c4d.documents.GetActiveDocument()
     selected_objects = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_0)
 
+    if not selected_objects:
+        c4d.gui.MessageDialog("Please select one or more objects to paste under.")
+        return
+
+    null_obj = c4d.BaseObject(c4d.Onull)
+    null_obj.SetName("Paste Container")
+    doc.InsertObject(null_obj)
+    doc.SetActiveObject(null_obj)
+    c4d.EventAdd()
+
     c4d.CallCommand(c4d.IDM_PASTE)
     c4d.EventAdd()
 
     clipboard_objects = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_0)
 
-    if not clipboard_objects or not selected_objects:
+    if not clipboard_objects:
         return
 
     doc.StartUndo()
@@ -33,8 +43,9 @@ def main():
             copy_obj.InsertUnder(parent)
 
     for obj in clipboard_objects:
-        doc.AddUndo(c4d.UNDOTYPE_DELETEOBJ, obj)
         obj.Remove()
+
+    null_obj.Remove()
 
     doc.EndUndo()
     c4d.EventAdd()

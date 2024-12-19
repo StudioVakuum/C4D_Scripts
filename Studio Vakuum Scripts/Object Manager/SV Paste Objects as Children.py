@@ -42,9 +42,6 @@ def main():
             doc.AddUndo(c4d.UNDOTYPE_NEWOBJ, copy_obj)
             copy_obj.InsertUnder(parent)
 
-    for obj in clipboard_objects:
-        obj.Remove()
-
     null_obj.Remove()
 
     doc.EndUndo()

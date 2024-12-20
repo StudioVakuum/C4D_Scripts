@@ -14,7 +14,7 @@ import c4d
 
 def main():
     doc = c4d.documents.GetActiveDocument()
-    selected_objects = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_0)
+    selected_objects = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_CHILDREN)
 
     if not selected_objects:
         c4d.gui.MessageDialog("Please select one or more objects to paste under.")
@@ -29,15 +29,15 @@ def main():
     c4d.CallCommand(c4d.IDM_PASTE)
     c4d.EventAdd()
 
-    clipboard_objects = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_0)
+    pasted_objects = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_CHILDREN)
 
-    if not clipboard_objects:
+    if not pasted_objects:
         return
 
     doc.StartUndo()
 
     for parent in selected_objects:
-        for obj in reversed(clipboard_objects):
+        for obj in reversed(pasted_objects):
             copy_obj = obj.GetClone()
             doc.AddUndo(c4d.UNDOTYPE_NEWOBJ, copy_obj)
             copy_obj.InsertUnder(parent)

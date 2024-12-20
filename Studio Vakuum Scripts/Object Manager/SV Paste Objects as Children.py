@@ -29,15 +29,15 @@ def main():
     c4d.CallCommand(c4d.IDM_PASTE)
     c4d.EventAdd()
 
-    pasted_objects = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_CHILDREN)
+    get_pasted_objects = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_CHILDREN)
 
-    if not pasted_objects:
+    if not get_pasted_objects:
         return
 
     doc.StartUndo()
 
     for parent in selected_objects:
-        for obj in reversed(pasted_objects):
+        for obj in get_pasted_objects:
             copy_obj = obj.GetClone()
             doc.AddUndo(c4d.UNDOTYPE_NEWOBJ, copy_obj)
             copy_obj.InsertUnder(parent)

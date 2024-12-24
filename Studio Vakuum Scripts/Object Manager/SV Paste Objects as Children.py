@@ -24,8 +24,7 @@ def main():
     null_obj.SetName("Paste Container")
     doc.InsertObject(null_obj)
     doc.SetActiveObject(null_obj)
-    c4d.EventAdd()
-
+    
     c4d.CallCommand(c4d.IDM_PASTE)
     c4d.EventAdd()
 

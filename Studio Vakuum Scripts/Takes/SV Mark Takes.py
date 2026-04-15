@@ -1,12 +1,10 @@
 """
 SV Mark Takes
-
 Author: Yannick Neuhaus (Studio Vakuum)
 Website: https://www.studio-vakuum.com
-Version: 1.0.0
-Description-US:DEFAULT: Marks all takes in the take system or only those selected and its children.<br>SHIFT: Marks all takes at the lowest hierarchy level.<br>CTRL: Marks takes at the next higher hierarchy level, maintaining previous marks.<br>ALT: Marks takes at the next higher hierarchy level, disregarding previous marks.
-
-Written for Maxon Cinema 4D 2024.5.1
+Version: 1.1.0
+Description-US:DEFAULT: Marks all takes in the take system or only those selected and its children.<br>SHIFT: Marks all takes at the lowest hierarchy level.<br>CTRL: Marks takes at the next higher hierarchy level, maintaining previous marks.<br>ALT: Marks takes at the next higher hierarchy level, disregarding previous marks.<br>SHIFT + CTRL: Marks takes that have no children (leaf nodes).
+Written for Maxon Cinema 4D 2026.1.4
 Python version 3.11.4
 """
 
@@ -24,26 +22,37 @@ def get_hierarchy_depth(take):
 def get_max_depth(take):
     current_depth = get_hierarchy_depth(take)
     max_depth = current_depth
-
     child = take.GetDown()
     while child:
         child_depth = get_max_depth(child)
         max_depth = max(max_depth, child_depth)
         child = child.GetNext()
-
     return max_depth
+
+def has_children(take):
+    return take.GetDown() is not None
+
+def mark_leaf_takes(takeData, selected_takes=None):
+    def mark_recursive(take):
+        if selected_takes is None or take in selected_takes:
+            take.SetChecked(not has_children(take))
+        child = take.GetDown()
+        while child:
+            mark_recursive(child)
+            child = child.GetNext()
+    mainTake = takeData.GetMainTake()
+    if mainTake:
+        mark_recursive(mainTake)
 
 def mark_takes_at_level(takeData, target_level, selected_takes=None):
     def mark_level_recursive(take):
         current_depth = get_hierarchy_depth(take)
         if selected_takes is None or take in selected_takes:
             take.SetChecked(current_depth == target_level)
-
         child = take.GetDown()
         while child:
             mark_level_recursive(child)
             child = child.GetNext()
-
     mainTake = takeData.GetMainTake()
     if mainTake:
         mark_level_recursive(mainTake)
@@ -54,23 +63,13 @@ def mark_takes_at_next_level(takeData, target_level, selected_takes=None):
         if selected_takes is None or take in selected_takes:
             if current_depth == target_level:
                 take.SetChecked(True)
-
         child = take.GetDown()
         while child:
             mark_level_recursive(child)
             child = child.GetNext()
-
     mainTake = takeData.GetMainTake()
     if mainTake:
         mark_level_recursive(mainTake)
-
-def get_stored_level(doc, max_level):
-    bc = doc.GetDataInstance()
-    return bc.GetInt32(CUSTOM_ID_LEVEL, max_level)
-
-def store_level(doc, level):
-    bc = doc.GetDataInstance()
-    bc.SetInt32(CUSTOM_ID_LEVEL, level)
 
 def mark_all_takes(takeData, selected_takes=None):
     def mark_takes_recursive(take):
@@ -80,15 +79,21 @@ def mark_all_takes(takeData, selected_takes=None):
         while child:
             mark_takes_recursive(child)
             child = child.GetNext()
-
     mainTake = takeData.GetMainTake()
     if mainTake:
         mark_takes_recursive(mainTake)
 
+def get_stored_level(doc, max_level):
+    bc = doc.GetDataInstance()
+    return bc.GetInt32(CUSTOM_ID_LEVEL, max_level)
+
+def store_level(doc, level):
+    bc = doc.GetDataInstance()
+    bc.SetInt32(CUSTOM_ID_LEVEL, level)
+
 def main():
     doc = c4d.documents.GetActiveDocument()
     takeData = doc.GetTakeData()
-
     if not takeData:
         return
 
@@ -103,7 +108,12 @@ def main():
 
     max_level = get_max_depth(takeData.GetMainTake())
 
-    if shift_pressed:
+    doc.StartUndo()
+    doc.AddUndo(c4d.UNDOTYPE_CHANGE, takeData.GetMainTake())
+
+    if shift_pressed and ctrl_pressed:
+        mark_leaf_takes(takeData, selected_takes)
+    elif shift_pressed:
         store_level(doc, max_level)
         mark_takes_at_level(takeData, max_level, selected_takes)
     elif ctrl_pressed:
@@ -120,6 +130,7 @@ def main():
         mark_all_takes(takeData, selected_takes)
         store_level(doc, max_level)
 
+    doc.EndUndo()
     c4d.EventAdd()
 
 if __name__ == '__main__':

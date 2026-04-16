@@ -7,7 +7,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 <table>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Center%20to%20Global%20Zero.png" alt="SV Center to Global Zero" width="72">
+      <img src="Icons/SV%20Center%20to%20Global%20Zero.png" alt="SV Center to Global Zero" width="96">
     </td>
     <td>
       <h2>SV Center to Global Zero</h2>
@@ -21,7 +21,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 <table>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Parent%20Name%20to%20Children.png" alt="SV Parent Name to Children" width="72">
+      <img src="Icons/SV%20Parent%20Name%20to%20Children.png" alt="SV Parent Name to Children" width="96">
     </td>
     <td>
       <h2>SV Parent Name to Children</h2>
@@ -30,7 +30,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Paste%20Objects%20as%20Children.png" alt="SV Paste Objects as Children" width="72">
+      <img src="Icons/SV%20Paste%20Objects%20as%20Children.png" alt="SV Paste Objects as Children" width="96">
     </td>
     <td>
       <h2>SV Paste Objects as Children</h2>
@@ -39,7 +39,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Paste%20Objects%20as%20Parent.png" alt="SV Paste Objects as Parent" width="72">
+      <img src="Icons/SV%20Paste%20Objects%20as%20Parent.png" alt="SV Paste Objects as Parent" width="96">
     </td>
     <td>
       <h2>SV Paste Objects as Parent</h2>
@@ -53,7 +53,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 <table>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Current%20Take%20Next.png" alt="SV Current Take Next" width="72">
+      <img src="Icons/SV%20Current%20Take%20Next.png" alt="SV Current Take Next" width="96">
     </td>
     <td>
       <h2>SV Current Take Next</h2>
@@ -62,7 +62,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Current%20Take%20Previous.png" alt="SV Current Take Previous" width="72">
+      <img src="Icons/SV%20Current%20Take%20Previous.png" alt="SV Current Take Previous" width="96">
     </td>
     <td>
       <h2>SV Current Take Previous</h2>
@@ -71,7 +71,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Current%20Marked%20Take%20Next.png" alt="SV Current Marked Take Next" width="72">
+      <img src="Icons/SV%20Current%20Marked%20Take%20Next.png" alt="SV Current Marked Take Next" width="96">
     </td>
     <td>
       <h2>SV Current Marked Take Next</h2>
@@ -80,7 +80,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Current%20Marked%20Take%20Previous.png" alt="SV Current Marked Take Previous" width="72">
+      <img src="Icons/SV%20Current%20Marked%20Take%20Previous.png" alt="SV Current Marked Take Previous" width="96">
     </td>
     <td>
       <h2>SV Current Marked Take Previous</h2>
@@ -89,7 +89,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Mark%20Takes.png" alt="SV Mark Takes" width="72">
+      <img src="Icons/SV%20Mark%20Takes.png" alt="SV Mark Takes" width="96">
     </td>
     <td>
       <h2>SV Mark Takes</h2>
@@ -98,7 +98,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Unmark%20Takes.png" alt="SV Unmark Takes" width="72">
+      <img src="Icons/SV%20Unmark%20Takes.png" alt="SV Unmark Takes" width="96">
     </td>
     <td>
       <h2>SV Unmark Takes</h2>
@@ -112,7 +112,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 <table>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Copy%20for%20Cycle.png" alt="SV Copy for Cycle" width="72">
+      <img src="Icons/SV%20Copy%20for%20Cycle.png" alt="SV Copy for Cycle" width="96">
     </td>
     <td>
       <h2>SV Copy for Cycle</h2>
@@ -121,7 +121,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Create%20Bool.png" alt="SV Create Bool" width="72">
+      <img src="Icons/SV%20Create%20Bool.png" alt="SV Create Bool" width="96">
     </td>
     <td>
       <h2>SV Create Bool</h2>
@@ -130,7 +130,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Create%20Color.png" alt="SV Create Color" width="72">
+      <img src="Icons/SV%20Create%20Color.png" alt="SV Create Color" width="96">
     </td>
     <td>
       <h2>SV Create Color</h2>
@@ -139,7 +139,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Create%20Cycle.png" alt="SV Create Cycle" width="72">
+      <img src="Icons/SV%20Create%20Cycle.png" alt="SV Create Cycle" width="96">
     </td>
     <td>
       <h2>SV Create Cycle</h2>
@@ -148,7 +148,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Create%20Cycle%20from%20Clipboard.png" alt="SV Create Cycle from Clipboard" width="72">
+      <img src="Icons/SV%20Create%20Cycle%20from%20Clipboard.png" alt="SV Create Cycle from Clipboard" width="96">
     </td>
     <td>
       <h2>SV Create Cycle from Clipboard</h2>
@@ -157,7 +157,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="./Icons/SV Create Float.png" alt="SV Create Float" width="72">
+      <img src="./Icons/SV Create Float.png" alt="SV Create Float" width="96">
     </td>
     <td>
       <h2>SV Create Float</h2>
@@ -166,7 +166,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Create%20Folder%20Path.png" alt="SV Create Folder Path" width="72">
+      <img src="Icons/SV%20Create%20Folder%20Path.png" alt="SV Create Folder Path" width="96">
     </td>
     <td>
       <h2>SV Create Folder Path</h2>
@@ -175,7 +175,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Create%20Folder%20Tex%20Path.png" alt="SV Create Folder Tex Path" width="72">
+      <img src="Icons/SV%20Create%20Folder%20Tex%20Path.png" alt="SV Create Folder Tex Path" width="96">
     </td>
     <td>
       <h2>SV Create Folder Tex Path</h2>
@@ -184,7 +184,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Create%20Integer.png" alt="SV Create Integer" width="72">
+      <img src="Icons/SV%20Create%20Integer.png" alt="SV Create Integer" width="96">
     </td>
     <td>
       <h2>SV Create Integer</h2>
@@ -193,7 +193,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Create%20String.png" alt="SV Create String" width="72">
+      <img src="Icons/SV%20Create%20String.png" alt="SV Create String" width="96">
     </td>
     <td>
       <h2>SV Create String</h2>
@@ -202,7 +202,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Create%20Vector.png" alt="SV Create Vector" width="72">
+      <img src="Icons/SV%20Create%20Vector.png" alt="SV Create Vector" width="96">
     </td>
     <td>
       <h2>SV Create Vector</h2>

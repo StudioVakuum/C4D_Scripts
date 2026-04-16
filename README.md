@@ -11,8 +11,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Center to Global Zero</h3>
-      Sets the selected object's axis to global zero while preserving the global position and axis of its children.
-      </br>
+      Sets the selected object's axis to global zero while preserving the global position and axis of its children.<br><br>
     </td>
   </tr>
 </table>
@@ -26,7 +25,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Parent Name to Children</h3>
-      Renames children based on the parent object name. Supports specific hierarchy levels and optional numeric suffixes.
+      Renames children based on the parent object name. Supports specific hierarchy levels and optional numeric suffixes.<br><br>
     </td>
   </tr>
   <tr>
@@ -35,7 +34,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Paste Objects as Children</h3>
-      Pastes clipboard objects as children under each selected object.
+      Pastes clipboard objects as children under each selected object.<br><br>
     </td>
   </tr>
   <tr>
@@ -44,7 +43,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Paste Objects as Parent</h3>
-      Pastes clipboard objects above the selected objects and inserts the selected objects under the deepest pasted child.
+      Pastes clipboard objects above the selected objects and inserts the selected objects under the deepest pasted child.<br><br>
     </td>
   </tr>
 </table>
@@ -58,7 +57,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Current Take Next</h3>
-      Switches to the next take in the Take Manager. With <code>Shift</code>, it navigates through leaf takes without stopping on parent takes.
+      Switches to the next take in the Take Manager. With <code>Shift</code>, it navigates through leaf takes without stopping on parent takes.<br><br>
     </td>
   </tr>
   <tr>
@@ -67,7 +66,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Current Take Previous</h3>
-      Switches to the previous take in the Take Manager. With <code>Shift</code>, it navigates through leaf takes only.
+      Switches to the previous take in the Take Manager. With <code>Shift</code>, it navigates through leaf takes only.<br><br>
     </td>
   </tr>
   <tr>
@@ -76,7 +75,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Current Marked Take Next</h3>
-      Switches to the next checked or marked take in the Take Manager.
+      Switches to the next checked or marked take in the Take Manager.<br><br>
     </td>
   </tr>
   <tr>
@@ -85,7 +84,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Current Marked Take Previous</h3>
-      Switches to the previous checked or marked take in the Take Manager.
+      Switches to the previous checked or marked take in the Take Manager.<br><br>
     </td>
   </tr>
   <tr>
@@ -94,7 +93,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Mark Takes</h3>
-      Marks takes in different ways depending on modifier keys: all takes, selected takes, deepest level, higher levels, or leaf-only takes.
+      Marks takes in different ways depending on modifier keys: all takes, selected takes, deepest level, higher levels, or leaf-only takes.<br><br>
     </td>
   </tr>
   <tr>
@@ -103,7 +102,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Unmark Takes</h3>
-      Clears take marks for all takes or only the currently selected take branches.
+      Clears take marks for all takes or only the currently selected take branches.<br><br>
     </td>
   </tr>
 </table>
@@ -117,7 +116,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Copy for Cycle</h3>
-      Copies selected object or material names to the clipboard in a format that can be reused for cycle user data entries.
+      Copies selected object or material names to the clipboard in a format that can be reused for cycle user data entries.<br><br>
     </td>
   </tr>
   <tr>
@@ -126,7 +125,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Create Bool</h3>
-      Adds a boolean user data field to the selected object.
+      Adds a boolean user data field to the selected object.<br><br>
     </td>
   </tr>
   <tr>
@@ -135,7 +134,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Create Color</h3>
-      Adds a color user data field to the selected object.
+      Adds a color user data field to the selected object.<br><br>
     </td>
   </tr>
   <tr>
@@ -144,7 +143,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Create Cycle</h3>
-      Adds an empty cycle user data field to the selected object.
+      Adds an empty cycle user data field to the selected object.<br><br>
     </td>
   </tr>
   <tr>
@@ -153,7 +152,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Create Cycle from Clipboard</h3>
-      Creates a cycle user data field from clipboard data prepared with <code>SV Copy for Cycle</code>.
+      Creates a cycle user data field from clipboard data prepared with <code>SV Copy for Cycle</code>.<br><br>
     </td>
   </tr>
   <tr>
@@ -162,7 +161,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Create Float</h3>
-      Adds a float user data field to the selected object, with optional unit selection such as length, percent, or degree.
+      Adds a float user data field to the selected object, with optional unit selection such as length, percent, or degree.<br><br>
     </td>
   </tr>
   <tr>
@@ -171,7 +170,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Create Folder Path</h3>
-      Opens a folder picker and stores the chosen folder path as a string user data field on the selected object.
+      Opens a folder picker and stores the chosen folder path as a string user data field on the selected object.<br><br>
     </td>
   </tr>
   <tr>
@@ -180,7 +179,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Create Folder Tex Path</h3>
-      Adds the current project <code>tex</code> folder path as a string user data field on the selected object.
+      Adds the current project <code>tex</code> folder path as a string user data field on the selected object.<br><br>
     </td>
   </tr>
   <tr>
@@ -189,7 +188,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Create Integer</h3>
-      Adds an integer user data field to the selected object.
+      Adds an integer user data field to the selected object.<br><br>
     </td>
   </tr>
   <tr>
@@ -198,7 +197,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Create String</h3>
-      Adds a string user data field to the selected object.
+      Adds a string user data field to the selected object.<br><br>
     </td>
   </tr>
   <tr>
@@ -207,7 +206,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Create Vector</h3>
-      Adds a vector user data field to the selected object, with optional unit selection.
+      Adds a vector user data field to the selected object, with optional unit selection.<br><br>
     </td>
   </tr>
 </table>

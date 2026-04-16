@@ -12,7 +12,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     <td>
       <h3>SV Center to Global Zero</h3>
       Sets the selected object's axis to global zero while preserving the global position and axis of its children.
-      <br>
+      </br>
     </td>
   </tr>
 </table>

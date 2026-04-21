@@ -1,10 +1,10 @@
 """
-SV Parent Name to Children
+SV Children Name to Parent
 
 Author: Yannick Neuhaus (Studio Vakuum)
 Website: https://www.studio-vakuum.com
-Version: 1.0.1
-Description-US: Apply name of the parent object to its child
+Version: 1.0.0
+Description-US: Apply name of the selected child objects to their parents based on levels up.
 
 Written for Maxon Cinema 4D 2026.2.0
 Python version 3.11.4
@@ -20,7 +20,7 @@ class RenameHierarchyDialog(gui.GeDialog):
         self.add_suffix = False
 
     def CreateLayout(self):
-        self.SetTitle("Parent Name to Children")
+        self.SetTitle("Children Name to Parent")
 
         self.AddStaticText(1000, c4d.BFH_LEFT, name="Hierarchy-Level(1 or 2-3 or 1,3)")
         self.AddEditText(1001, c4d.BFH_SCALEFIT)
@@ -43,14 +43,21 @@ class RenameHierarchyDialog(gui.GeDialog):
             return False
         return True
 
-def rename_children(obj, base_name, current_level, rename_levels, add_suffix):
-    if current_level in rename_levels:
-        obj.SetName(base_name)
+def rename_parents(obj, base_name, rename_levels, add_suffix):
+    current_level = 1
+    parent = obj.GetUp()
 
-    children = obj.GetChildren()
-    for i, child in enumerate(children):
-        new_name = f"{base_name}_{i+1}" if add_suffix else base_name
-        rename_children(child, new_name, current_level + 1, rename_levels, add_suffix)
+    max_level = max(rename_levels) if rename_levels else 0
+
+    while parent and current_level <= max_level:
+        if current_level in rename_levels:
+            new_name = f"{base_name}_{current_level}" if add_suffix else base_name
+
+            doc.AddUndo(c4d.UNDOTYPE_CHANGE, parent)
+            parent.SetName(new_name)
+
+        parent = parent.GetUp()
+        current_level += 1
 
 def main():
     dlg = RenameHierarchyDialog()
@@ -70,16 +77,15 @@ def main():
         else:
             rename_levels.add(int(part))
 
-    active_objects = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_CHILDREN)
+    active_objects = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_0)
+    if not active_objects:
+        return
 
     doc.StartUndo()
 
     for obj in active_objects:
         base_name = obj.GetName()
-
-        doc.AddUndo(c4d.UNDOTYPE_CHANGE, obj)
-
-        rename_children(obj, base_name, 0, rename_levels, dlg.add_suffix)
+        rename_parents(obj, base_name, rename_levels, dlg.add_suffix)
 
     doc.EndUndo()
     c4d.EventAdd()

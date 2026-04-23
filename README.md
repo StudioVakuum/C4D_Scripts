@@ -16,7 +16,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Delete%Symmetry.png" alt="SV Delete Symmetry" width="96">
+      <img src="Icons/SV%20Symmetry%20Delete.png" alt="SV Symmetry Delete" width="96">
     </td>
     <td>
       <h3>SV Symmetry Delete</h3>

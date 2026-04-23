@@ -4,6 +4,10 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 
 ### Modeling
 
+<details>
+<summary><strong>Open Modeling</strong></summary>
+<br>
+
 <table>
   <tr>
     <td width="96">
@@ -16,7 +20,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Symmetry%20Delete.png" alt="SV Symmetry Delete" width="96">
+      <img src="/Icons/SV%20Symmetry%20Delete.png" alt="SV Symmetry Delete" width="96">
     </td>
     <td>
       <h3>SV Symmetry Delete</h3>
@@ -25,7 +29,13 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
 </table>
 
+</details>
+
 ### Object Manager
+
+<details>
+<summary><strong>Open Object Manager</strong></summary>
+<br>
 
 <table>
   <tr>
@@ -66,7 +76,13 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
 </table>
 
+</details>
+
 ### Takes
+
+<details>
+<summary><strong>Open Takes</strong></summary>
+<br>
 
 <table>
   <tr>
@@ -125,7 +141,13 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
 </table>
 
+</details>
+
 ### XPresso
+
+<details>
+<summary><strong>Open XPresso</strong></summary>
+<br>
 
 <table>
   <tr>
@@ -184,7 +206,13 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>  
 </table>
 
+</details>
+
 ### User Data
+
+<details>
+<summary><strong>Open User Data</strong></summary>
+<br>
 
 <table>
   <tr>
@@ -287,3 +315,5 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
   </tr>
 </table>
+
+</details>

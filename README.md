@@ -2,10 +2,8 @@
 
 Collection of Cinema 4D Python scripts by Studio Vakuum.
 
-### Modeling
-
 <details>
-<summary><strong>Open Modeling</strong></summary>
+<summary>### Modeling</summary>
 <br>
 
 <table>
@@ -31,10 +29,8 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 
 </details>
 
-### Object Manager
-
 <details>
-<summary><strong>Open Object Manager</strong></summary>
+<summary><strong>Object Manager</strong></summary>
 <br>
 
 <table>
@@ -78,10 +74,8 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 
 </details>
 
-### Takes
-
 <details>
-<summary><strong>Open Takes</strong></summary>
+<summary><strong>Takes</strong></summary>
 <br>
 
 <table>
@@ -143,10 +137,8 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 
 </details>
 
-### XPresso
-
 <details>
-<summary><strong>Open XPresso</strong></summary>
+<summary><strong>XPresso</strong></summary>
 <br>
 
 <table>
@@ -208,10 +200,8 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 
 </details>
 
-### User Data
-
 <details>
-<summary><strong>Open User Data</strong></summary>
+<summary><strong>User Data</strong></summary>
 <br>
 
 <table>

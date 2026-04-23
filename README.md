@@ -14,11 +14,29 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
       Sets the selected object's axis to global zero while preserving the global position and axis of its children.<br><br>
     </td>
   </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Symmetry%20Delete.png" alt="SV Symmetry Delete" width="96">
+    </td>
+    <td>
+      <h3>SV Symmetry Delete</h3>
+      Deletes points symmetrically based on the chosen axis, side, tolerance, and world or object space.<br><br>
+    </td>
+  </tr>
 </table>
 
 ### Object Manager
 
 <table>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Children%20Name%20to%20Parent.png" alt="SV Children Name to Parent" width="96">
+    </td>
+    <td>
+      <h3>SV Children Name to Parent</h3>
+      Renames parent objects from the selected child object names, with support for specific hierarchy levels and optional suffixes.<br><br>
+    </td>
+  </tr>
   <tr>
     <td width="96">
       <img src="Icons/SV%20Parent%20Name%20to%20Children.png" alt="SV Parent Name to Children" width="96">
@@ -103,6 +121,65 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     <td>
       <h3>SV Unmark Takes</h3>
       Clears take marks for all takes or only the currently selected take branches.<br><br>
+    </td>
+  </tr>
+</table>
+
+### XPresso
+
+<table>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Copy%20Outports.png" alt="SV Copy Outputs" width="96">
+    </td>
+    <td>
+      <h3>SV Copy Outputs</h3>
+      Copies the output port names of the selected XPresso node to the clipboard for reuse in other nodes.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Object%20Create%20Material.png" alt="SV Create Material Op" width="96">
+    </td>
+    <td>
+      <h3>SV Create Material Op</h3>
+      Creates Material Operator nodes in the selected XPresso tag from the currently selected materials.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Object%20Create%20Objects.png" alt="SV Create Objects Op" width="96">
+    </td>
+    <td>
+      <h3>SV Create Objects Op</h3>
+      Creates Object Operator nodes in the selected XPresso tag from the currently selected objects.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Manage%20Condition%20Inputs.png" alt="SV Manage Inputs" width="96">
+    </td>
+    <td>
+      <h3>SV Manage Inputs</h3>
+      Adds or removes input ports on selected XPresso nodes such as Condition or Math nodes and adjusts their size.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20MultiConnect%20Nodes.png" alt="SV MultiConnect Nodes" width="96">
+    </td>
+    <td>
+      <h3>SV MultiConnect Nodes</h3>
+      Automatically connects multiple selected source nodes to the free input ports of a target node.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Paste%20Outports.png" alt="SV Paste Outputs" width="96">
+    </td>
+    <td>
+      <h3>SV Paste Outputs</h3>
+      Adds output ports to the selected XPresso nodes from parameter names stored in the clipboard.<br><br>
     </td>
   </tr>
 </table>

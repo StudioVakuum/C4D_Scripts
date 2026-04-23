@@ -130,11 +130,38 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 <table>
   <tr>
     <td width="96">
+      <img src="Icons/SV%20Manage%20Condition%20Inputs.png" alt="SV Manage Inputs" width="96">
+    </td>
+    <td>
+      <h3>SV Manage Inputs</h3>
+      Adds or removes input ports on selected XPresso nodes such as Condition or Math nodes and adjusts their size.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20MultiConnect%20Nodes.png" alt="SV MultiConnect Nodes" width="96">
+    </td>
+    <td>
+      <h3>SV MultiConnect Nodes</h3>
+      Automatically connects multiple selected source nodes to the free input ports of a target node.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
       <img src="Icons/SV%20Copy%20Outports.png" alt="SV Copy Outputs" width="96">
     </td>
     <td>
       <h3>SV Copy Outputs</h3>
       Copies the output port names of the selected XPresso node to the clipboard for reuse in other nodes.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Paste%20Outports.png" alt="SV Paste Outputs" width="96">
+    </td>
+    <td>
+      <h3>SV Paste Outputs</h3>
+      Adds output ports to the selected XPresso nodes from parameter names stored in the clipboard.<br><br>
     </td>
   </tr>
   <tr>
@@ -154,34 +181,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
       <h3>SV Create Objects Op</h3>
       Creates Object Operator nodes in the selected XPresso tag from the currently selected objects.<br><br>
     </td>
-  </tr>
-  <tr>
-    <td width="96">
-      <img src="Icons/SV%20Manage%20Condition%20Inputs.png" alt="SV Manage Inputs" width="96">
-    </td>
-    <td>
-      <h3>SV Manage Inputs</h3>
-      Adds or removes input ports on selected XPresso nodes such as Condition or Math nodes and adjusts their size.<br><br>
-    </td>
-  </tr>
-  <tr>
-    <td width="96">
-      <img src="Icons/SV%20MultiConnect%20Nodes.png" alt="SV MultiConnect Nodes" width="96">
-    </td>
-    <td>
-      <h3>SV MultiConnect Nodes</h3>
-      Automatically connects multiple selected source nodes to the free input ports of a target node.<br><br>
-    </td>
-  </tr>
-  <tr>
-    <td width="96">
-      <img src="Icons/SV%20Paste%20Outports.png" alt="SV Paste Outputs" width="96">
-    </td>
-    <td>
-      <h3>SV Paste Outputs</h3>
-      Adds output ports to the selected XPresso nodes from parameter names stored in the clipboard.<br><br>
-    </td>
-  </tr>
+  </tr>  
 </table>
 
 ### User Data

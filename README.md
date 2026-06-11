@@ -8,6 +8,15 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 <table>
   <tr>
     <td width="96">
+      <img src="Icons/SV%20Axis%20Orientation.png" alt="SV Axis Orientation" width="96">
+    </td>
+    <td>
+      <h3>SV Axis Orientation</h3>
+      Rotates the selected object axis orientation without changing the visible object position, mesh shape, or child transforms.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
       <img src="Icons/SV%20Center%20to%20Global%20Zero.png" alt="SV Center to Global Zero" width="96">
     </td>
     <td>
@@ -17,7 +26,16 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="/Icons/SV%20Symmetry%20Delete.png" alt="SV Symmetry Delete" width="96">
+      <img src="Icons/SV%20Create%20Centered%20Spline.png" alt="SV Create Centered Spline" width="96">
+    </td>
+    <td>
+      <h3>SV Create Centered Spline</h3>
+      Creates a linear spline through the center points of selected edge loops on a polygon object.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Symmetry%20Delete.png" alt="SV Symmetry Delete" width="96">
     </td>
     <td>
       <h3>SV Symmetry Delete</h3>
@@ -39,6 +57,24 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     <td>
       <h3>SV Children Name to Parent</h3>
       Renames parent objects from the selected child object names, with support for specific hierarchy levels and optional suffixes.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Instance%20Inherit%20Name.png" alt="SV Instance Inherit Name" width="96">
+    </td>
+    <td>
+      <h3>SV Instance Inherit Name</h3>
+      Renames selected Instance objects to match the names of their linked reference objects.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Instance.png" alt="SV Instances" width="96">
+    </td>
+    <td>
+      <h3>SV Instances</h3>
+      Creates instance objects from the current selection. With <code>Shift</code>, it creates a clean duplicate hierarchy of structural Nulls.<br><br>
     </td>
   </tr>
   <tr>
@@ -66,6 +102,32 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     <td>
       <h3>SV Paste Objects as Parent</h3>
       Pastes clipboard objects above the selected objects and inserts the selected objects under the deepest pasted child.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Trim%20Name.png" alt="SV Trim Object Names" width="96">
+    </td>
+    <td>
+      <h3>SV Trim Object Names</h3>
+      Removes a chosen number of characters from the start or end of selected object names.<br><br>
+    </td>
+  </tr>
+</table>
+
+</details>
+
+<details>
+<summary><h3>Redshift</h3></summary>
+
+<table>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20AOV%20Material%20ID.png" alt="SV AOV Material ID" width="96">
+    </td>
+    <td>
+      <h3>SV AOV Material ID</h3>
+      Assigns Material IDs to selected Redshift materials and creates Puzzle Matte AOVs to output those IDs.<br><br>
     </td>
   </tr>
 </table>
@@ -302,5 +364,3 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 </table>
 
 </details>
- 
- 

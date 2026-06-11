@@ -3,10 +3,10 @@ SV Copy for Cycle
 
 Author: Yannick Neuhaus (Studio Vakuum)
 Website: https://www.studio-vakuum.com
-Version: 1.0.0
+Version: 1.0.1
 Description-US: Select the objects or materials to copy their names and format it in clipboard before using for the script "SV Create Cycle from Clipboard".
 
-Written for Maxon Cinema 4D 2024.5.1
+Written for Maxon Cinema 4D 2026.2.0
 Python version 3.11.4
 """
 
@@ -14,8 +14,10 @@ import c4d
 from c4d import gui
 
 def main():
-    # Get selected objects
-    selection = doc.GetSelection()
+    # Get selected objects (filter out materials and other non-object types)
+    all_selection = doc.GetSelection()
+    selection = [obj for obj in all_selection if isinstance(obj, c4d.BaseObject)] if all_selection else []
+
     # Get selected materials
     selected_materials = doc.GetActiveMaterials()
 

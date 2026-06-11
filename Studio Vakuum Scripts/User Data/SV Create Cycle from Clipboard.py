@@ -3,10 +3,10 @@ SV Create Cycle from Clipboard
 
 Author: Yannick Neuhaus (Studio Vakuum)
 Website: https://www.studio-vakuum.com
-Version: 1.0.0
+Version: 1.0.1
 Description-US: Create cycle from Clipboard after the script "SV Copy for Cycle" was used
 
-Written for Maxon Cinema 4D 2024.5.1
+Written for Maxon Cinema 4D 2026.2.0
 Python version 3.11.4
 """
 
@@ -57,9 +57,9 @@ class MyDialog(c4d.gui.GeDialog):
 
 def main():
     obj = c4d.documents.GetActiveDocument().GetActiveObject()
-    
+
     clipboardText = c4d.GetStringFromClipboard()
-    
+
     if obj is None:
         c4d.gui.MessageDialog("Please select an object.")
         return
@@ -73,7 +73,7 @@ def main():
         return
 
     bc = c4d.GetCustomDataTypeDefault(c4d.DTYPE_LONG)
-    bc[c4d.DESC_NAME] = "Cycle Property"
+    bc[c4d.DESC_NAME] = name
     bc[c4d.DESC_CUSTOMGUI] = c4d.CUSTOMGUI_CYCLE
 
     clipboard_text = c4d.GetStringFromClipboard()

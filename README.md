@@ -65,7 +65,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Delete Unselected</h3>
-      <strong>Default:</strong> Deletes all objects except the current selection, selected hierarchies, and objects referenced by selected instances.<br><br>
+      Deletes all objects except the current selection, selected hierarchies, and objects referenced by selected instances.<br><br>
     </td>
   </tr>
   <tr>

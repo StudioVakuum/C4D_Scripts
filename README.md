@@ -65,7 +65,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Delete Unselected</h3>
-      Deletes all objects except the current selection, selected hierarchies, and objects referenced by selected instances.<br><br>
+      <strong>Default:</strong> Deletes all objects except the current selection, selected hierarchies, and objects referenced by selected instances.<br><br>
     </td>
   </tr>
   <tr>
@@ -83,7 +83,8 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Instances</h3>
-      Creates instance objects from the current selection. With <code>Shift</code>, it creates a clean duplicate hierarchy of structural Nulls.<br><br>
+      <strong>Default:</strong> Creates an instance object for each selected item.<br>
+      <strong>Shift:</strong> Creates a clean duplicate hierarchy of structural Nulls.<br><br>
     </td>
   </tr>
   <tr>
@@ -153,7 +154,8 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Current Take Next</h3>
-      Switches to the next take in the Take Manager. With <code>Shift</code>, it navigates through leaf takes without stopping on parent takes.<br><br>
+      <strong>Default:</strong> Switches to the next leaf take in the Take Manager, skipping parent takes with children.<br>
+      <strong>Shift:</strong> Switches to the next take without skipping parent takes with children.<br><br>
     </td>
   </tr>
   <tr>
@@ -162,7 +164,8 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Current Take Previous</h3>
-      Switches to the previous take in the Take Manager. With <code>Shift</code>, it navigates through leaf takes only.<br><br>
+      <strong>Default:</strong> Switches to the previous leaf take in the Take Manager, skipping parent takes with children.<br>
+      <strong>Shift:</strong> Switches to the previous take without skipping parent takes with children.<br><br>
     </td>
   </tr>
   <tr>
@@ -189,7 +192,11 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     </td>
     <td>
       <h3>SV Mark Takes</h3>
-      Marks takes in different ways depending on modifier keys: all takes, selected takes, deepest level, higher levels, or leaf-only takes.<br><br>
+      <strong>Default:</strong> Marks all takes in the Take Manager, or the selected takes and their children when takes are selected.<br>
+      <strong>Shift:</strong> Marks all takes at the lowest hierarchy level.<br>
+      <strong>Ctrl:</strong> Marks takes at the next higher hierarchy level while keeping previous marks.<br>
+      <strong>Alt:</strong> Marks takes at the next higher hierarchy level and clears previous marks.<br>
+      <strong>Shift + Ctrl:</strong> Marks takes that have no children.<br><br>
     </td>
   </tr>
   <tr>

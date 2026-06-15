@@ -4,7 +4,7 @@ SV Delete Unselected
 Author: Yannick Neuhaus (Studio Vakuum)
 Website: https://www.studio-vakuum.com
 Version: 1.0.0
-Description-US:DEFAULT: Deletes all objects except the current selection and any objects referenced by selected instances.
+Description-US: Deletes all objects except the current selection and any objects referenced by selected instances.
 
 Written for Maxon Cinema 4D 2026.3.0 or later
 Python version 3.11.4

@@ -61,6 +61,15 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
+      <img src="Icons/SV%20Delete%20Unselected.png" alt="SV Delete Unselected" width="96">
+    </td>
+    <td>
+      <h3>SV Delete Unselected</h3>
+      Deletes all objects except the current selection, selected hierarchies, and objects referenced by selected instances.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
       <img src="Icons/SV%20Instance%20Inherit%20Name.png" alt="SV Instance Inherit Name" width="96">
     </td>
     <td>

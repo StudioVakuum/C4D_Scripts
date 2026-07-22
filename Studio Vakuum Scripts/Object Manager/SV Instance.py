@@ -1,5 +1,5 @@
 """
-SV Instances
+SV Instance
 
 Author: Yannick Neuhaus (Studio Vakuum)
 Website: https://www.studio-vakuum.com
@@ -137,7 +137,7 @@ def main():
             if not instance_obj:
                 continue
 
-            instance_obj.SetName(f"{obj.GetName()}_Instance")
+            instance_obj.SetName(f"{obj.GetName()}")
 
             target_obj = obj
             if obj.GetType() == c4d.Oinstance:

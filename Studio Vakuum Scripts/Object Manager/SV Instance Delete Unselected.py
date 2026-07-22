@@ -1,5 +1,5 @@
 """
-SV Delete Unselected
+SV Instance Delete Unselected
 
 Author: Yannick Neuhaus (Studio Vakuum)
 Website: https://www.studio-vakuum.com

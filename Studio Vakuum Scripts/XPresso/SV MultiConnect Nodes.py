@@ -3,10 +3,10 @@ SV MultiConnect Nodes
 
 Author: Yannick Neuhaus (Studio Vakuum)
 Website: https://www.studio-vakuum.com
-Version: 1.0.0
+Version: 1.1.0
 Description-US: Only works with Nodes, that have one Output port, which are wired to a Nodes with multiple Input ports
 
-Written for Maxon Cinema 4D 2024.5.1
+Written for Maxon Cinema 4D 2026.2.0
 Python version 3.11.4
 """
 
@@ -39,40 +39,55 @@ def ConnectNodes(nodeMaster, doc):
             px = bcd.GetReal(100)
             py = bcd.GetReal(101)
             nodes.append(nodeObject(node, px, py))
-    
+
     if len(nodes) > 1:
         targetNode = max(nodes, key=lambda n: (n.px, n.py))
         sourceNodes = [n for n in nodes if n != targetNode]
         inputPorts = targetNode.node.GetInPorts()
         inputIndex = 0
-        sourceNodes.sort(key=lambda n: Distance(n, targetNode))
-        
+
+        sourceNodes.sort(key=lambda n: n.py)
         doc.AddUndo(c4d.UNDOTYPE_CHANGE, targetNode.node)
-        
+
+        failed = []
+
         for sourceNode in sourceNodes:
             outPort = GetFreePort(sourceNode.node.GetOutPorts())
             if outPort is None:
                 continue
-            while inputIndex < len(inputPorts):
-                if inputPorts[inputIndex].GetNrOfConnections() == 0:
-                    doc.AddUndo(c4d.UNDOTYPE_CHANGE, sourceNode.node)
-                    outPort.Connect(inputPorts[inputIndex])
-                    inputIndex += 1
-                    break
-                inputIndex += 1
-            if inputIndex >= len(inputPorts):
-                break
 
+            connected = False
+            while inputIndex < len(inputPorts):
+                inPort = inputPorts[inputIndex]
+                inputIndex += 1
+
+                if inPort.GetNrOfConnections() != 0:
+                    continue
+
+                result = outPort.Connect(inPort)
+
+                if result:
+                    doc.AddUndo(c4d.UNDOTYPE_CHANGE, sourceNode.node)
+                    connected = True
+                    break
+
+            if not connected:
+                failed.append(f"• '{sourceNode.node.GetName()}': no compatible input port found")
+            
+        if failed:
+            msg = "Connection failed:\n\n" + "\n".join(failed)
+            c4d.gui.MessageDialog(msg)
+    
 def main():
     doc = c4d.documents.GetActiveDocument()
     doc.StartUndo()
-    
+
     nodeMaster = c4d.modules.graphview.GetMaster(0)
     if nodeMaster is None:
         return
-    
+
     ConnectNodes(nodeMaster, doc)
-    
+
     doc.EndUndo()
     c4d.EventAdd()
 

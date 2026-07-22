@@ -3,10 +3,10 @@ SV Symmetry Delete
 
 Author: Yannick Neuhaus (Studio Vakuum)
 Website: https://www.studio-vakuum.com
-Version: 1.0.0
+Version: 1.1.0
 Description-US: Delete Points Symmetry-Wise
 
-Written for Maxon Cinema 4D 2026.2.0
+Written for Maxon Cinema 4D 2026.3.2
 Python version 3.11.4
 """
 
@@ -22,31 +22,156 @@ ID_TABRADIO_Z = 1200
 ID_TOLERANCE = 1250
 ID_AXIS_SPACE = 1260
 
-ID_BTN_OK     = 1300
+ID_BTN_OK = 1300
 ID_BTN_CANCEL = 1301
 
 LABEL_WIDTH = 90
-CONTROL_WIDTH = 200
+CONTROL_WIDTH = 90
+BUTTON_WIDTH = 90
+CONTROL_FLAGS = c4d.BFH_SCALEFIT | c4d.BFV_SCALEFIT
+DEFAULT_TOLERANCE = 0.001
+OBJECT_DIRTY_FLAGS = c4d.DIRTYFLAGS_DATA | c4d.DIRTYFLAGS_MATRIX
 
 class DeleteSideDialog(gui.GeDialog):
-    def __init__(self):
+    def __init__(self, objects):
+        self.doc = objects[0].GetDocument()
         self.x_side = "Off"
         self.y_side = "Off"
         self.z_side = "Off"
-        self.tolerance = 0.001
+        self.tolerance = DEFAULT_TOLERANCE
         self.axis_space = "World"
+        self._handling_core_message = False
+
+        self.clone_flags = (
+            c4d.COPYFLAGS_NO_ANIMATION
+            | c4d.COPYFLAGS_NO_HIERARCHY
+            | c4d.COPYFLAGS_NO_BITS
+        )
+        self.object_records = self.CaptureObjects(objects)
+        self.expected_states = []
+        self.CaptureExpectedStates()
+        self.copy_flags = self.clone_flags | getattr(
+            c4d, "COPYFLAGS_PRIVATE_IDENTMARKER", 0
+        )
+        self._initializing = True
 
         self.gadget_x = None
         self.gadget_y = None
         self.gadget_z = None
         self.gadget_axis_space = None
 
+    def CaptureObjects(self, objects):
+        return [
+            (obj, obj.GetClone(self.clone_flags), obj.GetMg())
+            for obj in objects
+        ]
+
+    def GetCurrentSelection(self):
+        doc = c4d.documents.GetActiveDocument()
+        selected = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_CHILDREN)
+        polygon_objects = [
+            obj for obj in selected if isinstance(obj, c4d.PolygonObject)
+        ]
+        return doc, polygon_objects
+
+    def SelectionMatchesRecords(self, objects):
+        if len(objects) != len(self.object_records):
+            return False
+
+        remaining = list(objects)
+        for record_obj, _, _ in self.object_records:
+            match_index = next(
+                (
+                    index for index, obj in enumerate(remaining)
+                    if obj == record_obj
+                ),
+                None,
+            )
+            if match_index is None:
+                return False
+            remaining.pop(match_index)
+        return True
+
+    def RefreshSelection(self):
+        doc, objects = self.GetCurrentSelection()
+        if doc == self.doc and self.SelectionMatchesRecords(objects):
+            return False
+
+        self.RestorePreviewState(notify=False)
+        document_changed = doc != self.doc
+        self.doc = doc
+        self.object_records = self.CaptureObjects(objects)
+        if document_changed:
+            self.expected_states = []
+        return True
+
+    def CaptureExpectedStates(self):
+        self.expected_states = [
+            (
+                obj.GetDirty(OBJECT_DIRTY_FLAGS),
+                obj.GetPointCount(),
+                obj.GetPolygonCount(),
+            )
+            for obj, _, _ in self.object_records
+            if obj.GetDocument() is not None
+        ]
+
+    def ObjectStateChanged(self):
+        active_records = [
+            record for record in self.object_records
+            if record[0].GetDocument() is not None
+        ]
+        if len(active_records) != len(self.expected_states):
+            return True
+
+        for (obj, _, _), expected in zip(
+            active_records, self.expected_states
+        ):
+            current = (
+                obj.GetDirty(OBJECT_DIRTY_FLAGS),
+                obj.GetPointCount(),
+                obj.GetPolygonCount(),
+            )
+            if current != expected:
+                return True
+        return False
+
+    def ResetControls(self):
+        self._initializing = True
+        self.x_side = "Off"
+        self.y_side = "Off"
+        self.z_side = "Off"
+        self.axis_space = "World"
+        self.tolerance = DEFAULT_TOLERANCE
+
+        self.gadget_axis_space.SetData(1)
+        self.gadget_x.SetData(1)
+        self.gadget_y.SetData(1)
+        self.gadget_z.SetData(1)
+        self.SetFloat(
+            ID_TOLERANCE,
+            self.tolerance,
+            min=-1000.0,
+            max=1000.0,
+            step=0.001,
+            format=c4d.FORMAT_FLOAT,
+        )
+        self._initializing = False
+
+    def HandleExternalObjectChange(self):
+        doc, objects = self.GetCurrentSelection()
+        self.doc = doc
+        self.object_records = self.CaptureObjects(objects)
+        self.ResetControls()
+        self.CaptureExpectedStates()
+        c4d.EventAdd()
+
     def CreateLayout(self):
         self.SetTitle("Symmetry Delete")
 
         self.GroupBegin(0, c4d.BFH_SCALEFIT, cols=2)
+        self.GroupBorderSpace(8, 8, 6, 0)
 
-        # Origin axis
         self.AddStaticText(0, c4d.BFH_LEFT, initw=LABEL_WIDTH, name="Origin Axis")
 
         items_space = c4d.BaseContainer()
@@ -57,11 +182,9 @@ class DeleteSideDialog(gui.GeDialog):
         bc_space.SetContainer(c4d.DESC_CYCLE, items_space)
 
         self.gadget_axis_space = self.AddCustomGui(
-            ID_AXIS_SPACE, 200000281, '', c4d.BFH_SCALEFIT | c4d.BFV_SCALEFIT, CONTROL_WIDTH, 0, bc_space
+            ID_AXIS_SPACE, 200000281, '', CONTROL_FLAGS, CONTROL_WIDTH, 0, bc_space
         )
-        self.gadget_axis_space.SetData(1)          
 
-        # X axis
         self.AddStaticText(0, c4d.BFH_LEFT, initw=LABEL_WIDTH, name="X axis")
 
         items_x = c4d.BaseContainer()
@@ -73,11 +196,9 @@ class DeleteSideDialog(gui.GeDialog):
         bc_x.SetContainer(c4d.DESC_CYCLE, items_x)
 
         self.gadget_x = self.AddCustomGui(
-            ID_TABRADIO_X, 200000281, '', c4d.BFH_SCALEFIT | c4d.BFV_SCALEFIT, CONTROL_WIDTH, 0, bc_x
+            ID_TABRADIO_X, 200000281, '', CONTROL_FLAGS, CONTROL_WIDTH, 0, bc_x
         )
-        self.gadget_x.SetData(1)
 
-        # Y axis
         self.AddStaticText(0, c4d.BFH_LEFT, initw=LABEL_WIDTH, name="Y axis")
 
         items_y = c4d.BaseContainer()
@@ -89,11 +210,9 @@ class DeleteSideDialog(gui.GeDialog):
         bc_y.SetContainer(c4d.DESC_CYCLE, items_y)
 
         self.gadget_y = self.AddCustomGui(
-            ID_TABRADIO_Y, 200000281, '', c4d.BFH_SCALEFIT | c4d.BFV_SCALEFIT, CONTROL_WIDTH, 0, bc_y
+            ID_TABRADIO_Y, 200000281, '', CONTROL_FLAGS, CONTROL_WIDTH, 0, bc_y
         )
-        self.gadget_y.SetData(1)
 
-        # Z axis
         self.AddStaticText(0, c4d.BFH_LEFT, initw=LABEL_WIDTH, name="Z axis")
 
         items_z = c4d.BaseContainer()
@@ -105,25 +224,88 @@ class DeleteSideDialog(gui.GeDialog):
         bc_z.SetContainer(c4d.DESC_CYCLE, items_z)
 
         self.gadget_z = self.AddCustomGui(
-            ID_TABRADIO_Z, 200000281, '', c4d.BFH_SCALEFIT | c4d.BFV_SCALEFIT, CONTROL_WIDTH, 0, bc_z
+            ID_TABRADIO_Z, 200000281, '', CONTROL_FLAGS, CONTROL_WIDTH, 0, bc_z
         )
-        self.gadget_z.SetData(1)
 
-        # Tolerance
         self.AddStaticText(0, c4d.BFH_LEFT, initw=LABEL_WIDTH, name="Tolerance")
-        self.AddEditNumberArrows(ID_TOLERANCE, c4d.BFH_SCALEFIT, initw=CONTROL_WIDTH)
-        self.SetFloat(ID_TOLERANCE, self.tolerance, min=-1000.0, max=1000.0, step=0.001, format=c4d.FORMAT_FLOAT)
+        self.AddEditNumberArrows(ID_TOLERANCE, c4d.BFH_LEFT, initw=CONTROL_WIDTH)
         self.GroupEnd()
 
-        self.AddSeparatorH(c4d.BFH_SCALEFIT)
+        self.AddStaticText(0, c4d.BFH_SCALEFIT, 0, 8, "")
 
-        # OK / Cancel
-        self.GroupBegin(0, c4d.BFH_SCALEFIT, cols=2)
-        self.AddButton(ID_BTN_CANCEL, c4d.BFH_SCALEFIT, name="Cancel")
-        self.AddButton(ID_BTN_OK, c4d.BFH_SCALEFIT, name="OK")
+        self.GroupBegin(0, c4d.BFH_LEFT, cols=2)
+        self.GroupBorderSpace(6, 0, 6, 8)
+        self.AddButton(
+            ID_BTN_CANCEL, c4d.BFH_LEFT, initw=BUTTON_WIDTH, name="Cancel"
+        )
+        self.AddButton(
+            ID_BTN_OK, c4d.BFH_LEFT, initw=BUTTON_WIDTH, name="OK"
+        )
         self.GroupEnd()
 
         return True
+
+    def InitValues(self):
+        self.ResetControls()
+        self.UpdatePreview()
+        return True
+
+    def CoreMessage(self, id, msg):
+        if (
+            id == c4d.EVMSG_CHANGE
+            and not self._handling_core_message
+            and self.CheckCoreMessage(msg)
+        ):
+            self._handling_core_message = True
+            try:
+                if self.ObjectStateChanged():
+                    self.HandleExternalObjectChange()
+                elif self.RefreshSelection():
+                    self.UpdatePreview()
+            finally:
+                self._handling_core_message = False
+
+        return super().CoreMessage(id, msg)
+
+    def UpdatePreview(self):
+        if self._initializing:
+            return
+
+        self.RefreshSelection()
+
+        c4d.StopAllThreads()
+
+        sides = [
+            side for side in (self.x_side, self.y_side, self.z_side)
+            if side != "Off"
+        ]
+        self.RestorePreviewState(notify=False)
+        for obj, original, world_matrix in self.object_records:
+            if obj.GetDocument() is None:
+                continue
+            point_ids = get_matching_point_ids(
+                original,
+                sides,
+                self.tolerance,
+                self.axis_space,
+                world_matrix,
+            )
+            delete_point_ids(obj, point_ids, add_undo=False, notify=False)
+            obj.Message(c4d.MSG_UPDATE)
+        self.CaptureExpectedStates()
+        c4d.EventAdd()
+
+    def RestorePreviewState(self, notify=True):
+        c4d.StopAllThreads()
+        for obj, original, _ in self.object_records:
+            if obj.GetDocument() is None:
+                continue
+            original.CopyTo(obj, self.copy_flags)
+            obj.Message(c4d.MSG_UPDATE)
+
+        if notify:
+            self.CaptureExpectedStates()
+            c4d.EventAdd()
 
     def Command(self, id, msg):
         if id == ID_TABRADIO_X:
@@ -146,10 +328,12 @@ class DeleteSideDialog(gui.GeDialog):
 
         if id == ID_BTN_OK:
             self.tolerance = self.GetFloat(ID_TOLERANCE)
-            self.Close()
+            if self.Finalize():
+                self.CommitCurrentState()
 
         if id == ID_BTN_CANCEL:
             self.x_side = self.y_side = self.z_side = None
+            self.RestorePreviewState()
             self.Close()
 
         if id == ID_AXIS_SPACE:
@@ -159,19 +343,81 @@ class DeleteSideDialog(gui.GeDialog):
             elif value == 2:
                 self.axis_space = "Object"
 
+        if id == ID_TOLERANCE:
+            self.tolerance = self.GetFloat(ID_TOLERANCE)
+
+        if id in (
+            ID_TABRADIO_X,
+            ID_TABRADIO_Y,
+            ID_TABRADIO_Z,
+            ID_TOLERANCE,
+            ID_AXIS_SPACE,
+        ):
+            self.UpdatePreview()
+
         return True
 
-    def Message(self, msg, result):
-        bc = c4d.BaseContainer()
-        ok = c4d.gui.GetInputState(c4d.BFM_INPUT_KEYBOARD, c4d.KEY_ENTER, bc)
-        if ok and bc[c4d.BFM_INPUT_VALUE] == 1:
-            self.Command(ID_BTN_OK, None)
+    def CommitCurrentState(self):
+        objects = [
+            obj for obj, _, _ in self.object_records
+            if obj.GetDocument() is not None
+        ]
+        self.object_records = self.CaptureObjects(objects)
+        self.CaptureExpectedStates()
+
+    def Finalize(self):
+        self.RefreshSelection()
+        sides = [
+            side for side in (self.x_side, self.y_side, self.z_side)
+            if side != "Off"
+        ]
+
+        point_ids_by_object = [
+            (obj, get_matching_point_ids(
+                original,
+                sides,
+                self.tolerance,
+                self.axis_space,
+                world_matrix,
+            ))
+            for obj, original, world_matrix in self.object_records
+            if obj.GetDocument() is not None
+        ]
+
+        self.RestorePreviewState(notify=False)
+        changed = [
+            (obj, point_ids)
+            for obj, point_ids in point_ids_by_object
+            if point_ids
+        ]
+        if not changed:
+            c4d.EventAdd()
             return True
-        ok = c4d.gui.GetInputState(c4d.BFM_INPUT_KEYBOARD, c4d.KEY_ESC, bc)
-        if ok and bc[c4d.BFM_INPUT_VALUE] == 1:
-            self.Command(ID_BTN_CANCEL, None)
-            return True
-        return super().Message(msg, result)
+
+        success = True
+        self.doc.StartUndo()
+        try:
+            for obj, point_ids in changed:
+                self.doc.AddUndo(c4d.UNDOTYPE_CHANGE, obj)
+                result = delete_point_ids(
+                    obj, point_ids, add_undo=False, notify=False
+                )
+                if result is False:
+                    success = False
+        finally:
+            self.doc.EndUndo()
+
+        c4d.EventAdd()
+        if not success:
+            self.UpdatePreview()
+            gui.MessageDialog(
+                "The symmetry deletion could not be applied to every object."
+            )
+            return False
+        return True
+
+    def DestroyWindow(self):
+        self.RestorePreviewState()
 
     def GetSides(self):
         return self.x_side, self.y_side, self.z_side
@@ -182,13 +428,13 @@ class DeleteSideDialog(gui.GeDialog):
     def GetAxisSpace(self):
         return self.axis_space
 
-def delete_points_by_sides(obj, sides, tolerance, axis_space):
+def get_matching_point_ids(
+    obj, sides, tolerance, axis_space, world_matrix=None
+):
     if not isinstance(obj, c4d.PolygonObject):
-        return False
+        return []
 
-    doc = obj.GetDocument()
-    mg = obj.GetMg()
-    points = obj.GetAllPoints()
+    mg = world_matrix if world_matrix is not None else obj.GetMg()
 
     def make_test(side):
         if side == "-X": return lambda p: p.x < -tolerance
@@ -199,71 +445,80 @@ def delete_points_by_sides(obj, sides, tolerance, axis_space):
         if side == "+Z": return lambda p: p.z > tolerance
         return lambda p: False
 
-    tests = [make_test(s) for s in sides if s != "Off"]
-
+    tests = [make_test(side) for side in sides if side != "Off"]
     if not tests:
-        return True
+        return []
 
-    point_sel = obj.GetPointS()
-    point_sel.DeselectAll()
-
-    selected = 0
-    for i, point in enumerate(points):
+    result = []
+    for index, point in enumerate(obj.GetAllPoints()):
         test_point = mg * point if axis_space == "World" else point
+        if any(test(test_point) for test in tests):
+            result.append(index)
 
-        if any(t(test_point) for t in tests):
-            point_sel.Select(i)
-            selected += 1
+    return result
 
-    if selected == 0:
+
+def delete_point_ids(obj, point_ids, add_undo=True, notify=True):
+    if not isinstance(obj, c4d.PolygonObject):
+        return False
+
+    if not point_ids:
         return True
 
-    doc.StartUndo()
-    doc.AddUndo(c4d.UNDOTYPE_CHANGE, obj)
+    doc = obj.GetDocument()
+    c4d.StopAllThreads()
+    if add_undo:
+        doc.StartUndo()
+        doc.AddUndo(c4d.UNDOTYPE_CHANGE, obj)
 
-    bc = c4d.BaseContainer()
-    res = utils.SendModelingCommand(
-        command=c4d.MCOMMAND_DELETE,
-        list=[obj],
-        mode=c4d.MODELINGCOMMANDMODE_POINTSELECTION,
-        bc=bc,
-        doc=doc)
+    try:
+        point_sel = obj.GetPointS()
+        point_sel.DeselectAll()
+        for point_id in point_ids:
+            point_sel.Select(point_id)
 
-    doc.EndUndo()
-    c4d.EventAdd()
+        bc = c4d.BaseContainer()
+        res = utils.SendModelingCommand(
+            command=c4d.MCOMMAND_DELETE,
+            list=[obj],
+            mode=c4d.MODELINGCOMMANDMODE_POINTSELECTION,
+            bc=bc,
+            doc=doc)
+    finally:
+        if add_undo:
+            doc.EndUndo()
+
+    if notify:
+        c4d.EventAdd()
 
     return res
 
+
+def delete_points_by_sides(obj, sides, tolerance, axis_space):
+    point_ids = get_matching_point_ids(obj, sides, tolerance, axis_space)
+    return delete_point_ids(obj, point_ids)
+
+_dlg = None
+
+
 def main():
-    dlg = DeleteSideDialog()
-    ok = dlg.Open(c4d.DLG_TYPE_MODAL)
-
-    if not ok:
-        return
-
-    x_side, y_side, z_side = dlg.GetSides()
-    tolerance = dlg.GetTolerance()
-    axis_space = dlg.GetAxisSpace()
-
-    if x_side is None:
-        return
-
+    global _dlg
     doc = c4d.documents.GetActiveDocument()
-    sel = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_0)
+    selected = doc.GetActiveObjects(c4d.GETACTIVEOBJECTFLAGS_CHILDREN)
 
-    if not sel:
+    if not selected:
         gui.MessageDialog("Please select at least one polygon object.")
         return
 
-    obj = sel[0]
-
-    if not isinstance(obj, c4d.PolygonObject):
-        gui.MessageDialog("The selected object is not a polygon object.")
+    polygon_objects = [
+        obj for obj in selected if isinstance(obj, c4d.PolygonObject)
+    ]
+    if not polygon_objects:
+        gui.MessageDialog("Please select at least one polygon object.")
         return
 
-    active_sides = [s for s in (x_side, y_side, z_side) if s != "Off"]
-
-    delete_points_by_sides(obj, active_sides, tolerance, axis_space)
+    _dlg = DeleteSideDialog(polygon_objects)
+    _dlg.Open(c4d.DLG_TYPE_ASYNC, pluginid=ID_DLG_DELETE_SIDE)
 
 if __name__ == '__main__':
     main()

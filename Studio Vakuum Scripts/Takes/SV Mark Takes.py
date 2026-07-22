@@ -3,7 +3,7 @@ SV Mark Takes
 Author: Yannick Neuhaus (Studio Vakuum)
 Website: https://www.studio-vakuum.com
 Version: 1.1.0
-Description-US:DEFAULT: Marks all takes in the take system or only those selected and its children.<br>SHIFT: Marks all takes at the lowest hierarchy level.<br>CTRL: Marks takes at the next higher hierarchy level, maintaining previous marks.<br>ALT: Marks takes at the next higher hierarchy level, disregarding previous marks.<br>SHIFT + CTRL: Marks takes that have no children (leaf nodes).
+Description-US:DEFAULT: Marks all takes in the take system or only those selected and its children.<br>SHIFT: Marks all takes at the lowest hierarchy level.<br>CTRL: Marks takes at the next higher hierarchy level, maintaining previous marks.<br>ALT: Marks takes at the next higher hierarchy level, disregarding previous marks.<br>SHIFT + CTRL: Marks takes that have no children.
 Written for Maxon Cinema 4D 2026.1.4
 Python version 3.11.4
 """

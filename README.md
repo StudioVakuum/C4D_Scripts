@@ -35,6 +35,24 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
+      <img src="Icons/SV%20Quad%20Circle.png" alt="SV Quad Circle" width="96">
+    </td>
+    <td>
+      <h3>SV Quad Circle</h3>
+      Creates a circular quad layout from selected points, with controls for radius accuracy and curvature.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Snap%20Points%20to%20Spline.png" alt="SV Snap Points to Spline" width="96">
+    </td>
+    <td>
+      <h3>SV Snap Points to Spline</h3>
+      Snaps selected polygon points or selected edge endpoints to the closest position on one or more selected splines.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
       <img src="Icons/SV%20Symmetry%20Delete.png" alt="SV Symmetry Delete" width="96">
     </td>
     <td>
@@ -52,6 +70,15 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 <table>
   <tr>
     <td width="96">
+      <img src="Icons/SV%20Block%20HDR%20Light%20Studio%20Visibility.png" alt="SV Block HDR Light Studio Visibility" width="96">
+    </td>
+    <td>
+      <h3>SV Block HDR Light Studio Visibility</h3>
+      Adds a visibility-lock Python tag to selected objects with a Default, On, or Off mode for editor and render visibility.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
       <img src="Icons/SV%20Children%20Name%20to%20Parent.png" alt="SV Children Name to Parent" width="96">
     </td>
     <td>
@@ -61,11 +88,11 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Delete%20Unselected.png" alt="SV Delete Unselected" width="96">
+      <img src="Icons/SV%20Instance%20Delete.png" alt="SV Instance Delete Unselected" width="96">
     </td>
     <td>
-      <h3>SV Delete Unselected</h3>
-      Deletes all objects except the current selection, selected hierarchies, and objects referenced by selected instances.<br><br>
+      <h3>SV Instance Delete Unselected</h3>
+      Deletes unselected objects while preserving the selected objects, their hierarchies, and linked instance references.<br><br>
     </td>
   </tr>
   <tr>
@@ -123,6 +150,15 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
       Removes a chosen number of characters from the start or end of selected object names.<br><br>
     </td>
   </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Reorder%20Tags.png" alt="SV Reorder Tags" width="96">
+    </td>
+    <td>
+      <h3>SV Reorder Tags</h3>
+      Reorders visible tags on selected objects to match the first selected object with tags, without creating, deleting, renaming, or copying tags.<br><br>
+    </td>
+  </tr>
 </table>
 
 </details>
@@ -131,6 +167,24 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 <summary><h3>Redshift</h3></summary>
 
 <table>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20RS%20MultiConnect%20Nodes.png" alt="SV RS MultiConnect Nodes" width="96">
+    </td>
+    <td>
+      <h3>SV RS MultiConnect Nodes</h3>
+      Connects selected Redshift nodes to a selected target node using manually defined source ordering.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20RS%20Texture%20Shader%20Switch.png" alt="SV RS Texture Shader Switch" width="96">
+    </td>
+    <td>
+      <h3>SV RS Texture Shader Switch</h3>
+      Creates texture sampler nodes from selected image files and connects them to Redshift Shader Switch nodes.<br><br>
+    </td>
+  </tr>
   <tr>
     <td width="96">
       <img src="Icons/SV%20AOV%20Material%20ID.png" alt="SV AOV Material ID" width="96">
@@ -218,6 +272,15 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
 <table>
   <tr>
     <td width="96">
+      <img src="Icons/SV%20Condition%20Create%20Materials.png" alt="SV Create Material Op + Condition" width="96">
+    </td>
+    <td>
+      <h3>SV Create Material Op + Condition</h3>
+      Creates Material Operator nodes from selected materials and connects them to a Condition node.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
       <img src="Icons/SV%20Manage%20Condition%20Inputs.png" alt="SV Manage Inputs" width="96">
     </td>
     <td>
@@ -236,19 +299,19 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Copy%20Outports.png" alt="SV Copy Outputs" width="96">
+      <img src="Icons/SV%20Copy%20Outports.png" alt="SV Copy Outports" width="96">
     </td>
     <td>
-      <h3>SV Copy Outputs</h3>
+      <h3>SV Copy Outports</h3>
       Copies the output port names of the selected XPresso node to the clipboard for reuse in other nodes.<br><br>
     </td>
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Paste%20Outports.png" alt="SV Paste Outputs" width="96">
+      <img src="Icons/SV%20Paste%20Outports.png" alt="SV Paste Outports" width="96">
     </td>
     <td>
-      <h3>SV Paste Outputs</h3>
+      <h3>SV Paste Outports</h3>
       Adds output ports to the selected XPresso nodes from parameter names stored in the clipboard.<br><br>
     </td>
   </tr>
@@ -259,6 +322,15 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
     <td>
       <h3>SV Create Material Op</h3>
       Creates Material Operator nodes in the selected XPresso tag from the currently selected materials.<br><br>
+    </td>
+  </tr>
+  <tr>
+    <td width="96">
+      <img src="Icons/SV%20Condition%20Create%20Objects.png" alt="SV Create Objects Op + Condition" width="96">
+    </td>
+    <td>
+      <h3>SV Create Objects Op + Condition</h3>
+      Creates Object Operator nodes from selected objects and connects them to a Condition node.<br><br>
     </td>
   </tr>
   <tr>

@@ -33,7 +33,7 @@ class MyDialog(c4d.gui.GeDialog):
         return True
 
     def Command(self, id, msg):
-        if id == 2003: 
+        if id == 2003:
             self.result = self.GetString(self.ID_INPUT)
             self.Close()
         elif id == 2002:

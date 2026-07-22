@@ -88,7 +88,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Instance%20Delete.png" alt="SV Instance Delete Unselected" width="96">
+      <img src="Icons/SV%20Instance%20Delete%20Unselected.png" alt="SV Instance Delete Unselected" width="96">
     </td>
     <td>
       <h3>SV Instance Delete Unselected</h3>
@@ -317,7 +317,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Object%20Create%20Material.png" alt="SV Create Material Op" width="96">
+      <img src="Icons/SV%20Create%20Material%20Op.png" alt="SV Create Material Op" width="96">
     </td>
     <td>
       <h3>SV Create Material Op</h3>
@@ -335,7 +335,7 @@ Collection of Cinema 4D Python scripts by Studio Vakuum.
   </tr>
   <tr>
     <td width="96">
-      <img src="Icons/SV%20Object%20Create%20Objects.png" alt="SV Create Objects Op" width="96">
+      <img src="Icons/SV%20Create%20Objects%20Op.png" alt="SV Create Objects Op" width="96">
     </td>
     <td>
       <h3>SV Create Objects Op</h3>
